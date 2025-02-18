@@ -1,183 +1,150 @@
 @property --button-gradient-start {
-    syntax: '<color>';
-    initial-value: #9fd9e3;
-    inherits: false;
+  syntax: '<color>';
+  initial-value: #9fd9e3;
+  inherits: false;
 }
 
 @property --button-gradient-end {
-    syntax: '<color>';
-    initial-value: #a0c4dd;
-    inherits: false;
+  syntax: '<color>';
+  initial-value: #a0c4dd;
+  inherits: false;
 }
 
 .loginForm {
-    background: linear-gradient(161.43deg, #f4fafb 6.22%, var(--background) 93.78%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    padding: 5rem 2rem 6rem;
-    max-width: 100%;
-    width: 100%;
+  background: linear-gradient(
+    161.43deg,
+    #f4fafb 6.22%,
+    var(--background) 93.78%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 5rem 2rem 6rem;
+  max-width: 100%;
+  width: 100%;
 
-    @media (min-width: 530px) {
-        border-radius: 2rem;
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.02), 0px 4px 20px rgba(0, 0, 0, 0.03), 0px 4px 40px rgba(0, 0, 0, 0.04);
-        display: block;
-        height: unset;
-        padding: 5rem 3rem 6rem;
-        width: 450px;
+  @media (min-width: 530px) {
+    border-radius: 2rem;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.02),
+      0px 4px 20px rgba(0, 0, 0, 0.03), 0px 4px 40px rgba(0, 0, 0, 0.04);
+    display: block;
+    height: unset;
+    padding: 5rem 3rem 6rem;
+    width: 450px;
+  }
+
+  h1,
+  p {
+    text-align: center;
+    font-weight: inherit;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    letter-spacing: -0.05ch;
+    margin-bottom: 0.25rem;
+  }
+
+  a {
+    position: relative;
+
+    &::after {
+      background: var(--foreground);
+      bottom: -2px;
+      content: '';
+      height: 1px;
+      left: 0;
+      position: absolute;
+      width: 0;
+      transition: width 0.35s ease-in-out;
     }
 
-    h1,
-    p {
-        text-align: center;
-        font-weight: inherit;
+    &:hover::after,
+    &:focus::after {
+      width: 98%;
     }
 
-    h1 {
-        font-size: 2.25rem;
-        letter-spacing: -.05ch;
-        margin-bottom: .25rem;
+    &:focus {
+      outline: none;
     }
+  }
 
-    a {
-        position: relative;
-
-        &::after {
-            background: var(--foreground);
-            bottom: -2px;
-            content: '';
-            height: 1px;
-            left: 0;
-            position: absolute;
-            width: 0;
-            transition: width .35s ease-in-out;
-        }
-
-        &:hover::after,
-        &:focus::after {
-            width: 98%;
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    form {
-        margin-top: 3rem;
-    }
-
+  form {
+    margin-top: 3rem;
+  }
 }
 
 .inputPassword,
 .inputEmail,
 .submitButton {
-    border-radius: 50px;
-    border: none;
-    display: block;
-    width: 100%;
-    padding: .85rem 1.5rem;
+  width: 100%;
 }
 
 .inputPassword,
 .inputEmail {
-    margin-bottom: 1rem;
-    margin-top: .5rem;
-    outline: 1px solid rgba(65, 79, 80, .4);
-    transition: outline .2s, drop-shadow .1s ease;
-    background: transparent;
-    ;
-
-    &:focus {
-        outline: 1px solid rgba(65, 79, 80, 1);
-        box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, .04), 0px 3px 8px -5px rgba(0, 0, 0, .04);
-    }
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 
 .inputEmail {
-    margin-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .checkbox,
 .forgotPasswordLink {
-    font-size: .85rem;
+  font-size: 0.85rem;
 }
 
 .checkbox,
 .submitButton {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .checkbox {
-    display: inline-flex;
-    align-items: center;
-    gap: .38rem;
-    margin-left: .25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  margin-left: 0.25rem;
 
-    input {
-        appearance: none;
-        box-shadow: 0px 1px 2px rgba(0, 0, 0, .04),
-            0px 2px 5px rgba(0, 0, 0, .06);
-        display: grid;
-        place-content: center;
-        width: 1rem;
-        height: 1rem;
-        border-radius: 100%;
-        background: white;
-        margin-top: -.15rem;
-        outline: 1px solid rgba(65, 79, 80, .4);
-        ;
-
-        &::before {
-            content: '';
-            width: 1rem;
-            height: 1rem;
-            scale: .35;
-            background: none;
-            border-radius: 100%;
-            transition: all .15s ease;
-        }
-
-        &:checked::before {
-            background: var(--foreground);
-            scale: .5;
-        }
-    }
+  input {
+    margin-top: -0.15rem;
+  }
 }
 
-
 .forgotPasswordLink {
-    float: right;
-    margin-right: .25rem;
+  float: right;
+  margin-right: 0.25rem;
 }
 
 .submitButton {
-    background: linear-gradient(91.43deg, var(--button-gradient-start) 6.22%, var(--button-gradient-end) 93.78%);
-    color: var(--foreground);
-    font-weight: 700;
-    margin: 3rem auto 1.25rem;
-    outline: none;
-    transition: --button-gradient-start .25s ease .1s,
-        --button-gradient-end .25s ease,
-        drop-shadow .25s ease,
-        color .25s ease;
+  background: linear-gradient(
+    91.43deg,
+    var(--button-gradient-start) 6.22%,
+    var(--button-gradient-end) 93.78%
+  );
+  color: var(--foreground);
+  font-weight: 700;
+  margin: 3rem auto 1.25rem;
+  outline: none;
+  transition: --button-gradient-start 0.25s ease 0.1s,
+    --button-gradient-end 0.25s ease, drop-shadow 0.25s ease, color 0.25s ease;
 
-    &:focus,
-    &:hover {
-        --button-gradient-start: #05AAC7;
-        --button-gradient-end: #536992;
+  &:focus,
+  &:hover {
+    --button-gradient-start: #05aac7;
+    --button-gradient-end: #536992;
 
-        color: white;
-        box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, .04), 0px 3px 10px -5px rgba(0, 0, 0, .04);
-    }
+    color: white;
+    box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.04),
+      0px 3px 10px -5px rgba(0, 0, 0, 0.04);
+  }
 }
 
 .signup {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    width: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: fit-content;
 }
