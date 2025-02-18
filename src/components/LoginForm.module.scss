@@ -1,0 +1,115 @@
+.loginForm {
+    border: 1px solid black;
+    padding: 2.5rem;
+    background: rgb(184, 183, 199);
+    background: linear-gradient(177deg, rgb(241, 237, 245) 0%, rgb(232, 235, 203) 100%);
+    // background: linear-gradient(177deg, rgb(194, 213, 226) 0%, rgb(177, 215, 208) 35%, rgb(205, 225, 209) 100%);
+    height: 100svh;
+
+}
+
+.inputPassword,
+.inputEmail,
+.submitButton {
+    border-radius: 50px;
+    border: none;
+    display: block;
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+}
+
+.inputPassword,
+.inputEmail {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    outline: 1px transparent;
+    transition: outline 0.1s ease, drop-shadow 0.1s ease;
+    ;
+
+    &:focus {
+        outline: 1px solid rgb(187, 181, 191);
+        -webkit-box-shadow: 0px 5px 8px 1px rgba(0, 0, 0, 0.02), 0px 3px 10px -9px rgba(0, 0, 0, 0.02);
+        box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.04), 0px 3px 8px -5px rgba(0, 0, 0, 0.04);
+    }
+}
+
+.inputEmail {
+    margin-bottom: 1.5rem;
+}
+
+
+
+.row {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.checkbox,
+.forgotPasswordLink {
+    font-size: 0.85rem;
+}
+
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: -1.25rem;
+
+    input {
+        appearance: none;
+        display: grid;
+        place-content: center;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 100%;
+        background: white;
+        margin-top: -0.15rem;
+
+        &::before {
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            scale: 0.35;
+            background: none;
+            border-radius: 100%;
+            transition: all 0.15s ease;
+        }
+
+        &:checked::before {
+            background: rgb(151, 143, 157);
+            scale: 0.5;
+        }
+
+        &:focus {
+            outline: 1px solid rgb(187, 181, 191);
+        }
+    }
+}
+
+.forgotPasswordLink {
+    float: right;
+    margin-right: -1.25rem;
+}
+
+.submitButton {
+    margin: 3rem auto 1.5rem;
+    background: rgb(255, 213, 47);
+    transition: background 0.15s ease, drop-shadow 0.1s ease;
+    outline: none;
+
+    &:focus,
+    &:hover {
+        background: rgb(255, 196, 0);
+        -webkit-box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.02), 0px 3px 15px -9px rgba(0, 0, 0, 0.02);
+        box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.04), 0px 3px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+}
+
+.signup {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: fit-content;
+    padding: 0 0.5rem;
+    text-align: center;
+}
