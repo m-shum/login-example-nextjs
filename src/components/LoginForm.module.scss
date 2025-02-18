@@ -11,11 +11,9 @@
 }
 
 .loginForm {
-  background: linear-gradient(
-    161.43deg,
-    #f4fafb 6.22%,
-    var(--background) 93.78%
-  );
+  background: linear-gradient(161.43deg,
+      #f4fafb 6.22%,
+      var(--background) 93.78%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,11 +116,9 @@
 }
 
 .submitButton {
-  background: linear-gradient(
-    91.43deg,
-    var(--button-gradient-start) 6.22%,
-    var(--button-gradient-end) 93.78%
-  );
+  background: linear-gradient(91.43deg,
+      var(--button-gradient-start) 6.22%,
+      var(--button-gradient-end) 93.78%);
   color: var(--foreground);
   font-weight: 700;
   margin: 3rem auto 1.25rem;
@@ -147,4 +143,9 @@
   margin-right: auto;
   text-align: center;
   width: fit-content;
+}
+
+.errorMessage {
+  color: #E80000;
+  text-align: left;
 }
