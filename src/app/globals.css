@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: rgb(66, 63, 69);
+  --background: #E8F2F3;
+  --foreground: #414F50;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: rgb(66, 63, 69);
-    --foreground: #ededed;
+    --background: #161F20;
+    --foreground: #DEEFF1;
   }
 }
 
@@ -19,9 +21,12 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
   font-size: 1rem;
-  font-weight: 400;
+  font-style: normal;
+  font-weight: 500;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,10 +44,39 @@ a {
 
 input {
   font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+header,
+footer {
+  position: fixed;
+}
+
+header {
+  top: 0;
+}
+
+footer {
+  bottom: 0;
+}
+
+.visually-hidden {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

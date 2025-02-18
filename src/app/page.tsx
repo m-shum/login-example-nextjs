@@ -4,8 +4,10 @@ import LoginForm from "@/components/LoginForm";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <LoginForm/>
-    </div>
+    <main className={styles.page}>
+      <div className={styles.flexContainer}>
+        <LoginForm />
+      </div>
+    </main>
   );
 }
