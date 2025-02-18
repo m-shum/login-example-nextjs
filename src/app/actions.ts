@@ -1,5 +1,5 @@
 'use server'
-// import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 export async function login(prevState: any, formData: FormData) {
   const res = await fetch(`${process.env.URL}/api/login`, {
@@ -7,12 +7,12 @@ export async function login(prevState: any, formData: FormData) {
     body: formData,
   })
 
-  const json = await res.json()
+  const data = await res.json()
   if (res.ok) {
-    console.log('all good')
-    return json
+    redirect(`/user/${data.id}`)
+    // return data
   } else
     return {
-      message: json.error,
+      message: data.error,
     }
 }
