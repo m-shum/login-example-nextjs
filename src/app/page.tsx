@@ -8,7 +8,6 @@ export default async function Home() {
   const cookieStore = await cookies()
   const sessionCookie =
     cookieStore.get('rememberUser') || cookieStore.get('sessionUser')
-  console.log('session cookie', sessionCookie)
 
   if (sessionCookie) {
     return redirect(`/users/${decodeURIComponent(sessionCookie.value)}`)
