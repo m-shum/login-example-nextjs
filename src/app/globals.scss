@@ -75,6 +75,14 @@ input[type='password'] {
     color: inherit;
     opacity: 0.55;
   }
+
+  @media (prefers-color-scheme: dark) {
+    outline: 1px solid rgba(222, 239, 241, 0.4);
+
+    &:focus {
+      outline: 1px solid rgba(222, 239, 241, 1);
+    }
+  }
 }
 
 input[type='checkbox'] {
@@ -101,6 +109,18 @@ input[type='checkbox'] {
   &:checked::before {
     background: var(--foreground);
     scale: 0.5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    outline: none;
+
+    &:focus {
+      outline: 1px solid #81a3bc;
+    }
+
+    &:checked::before {
+      background: var(--background);
+    }
   }
 }
 

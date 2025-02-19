@@ -11,9 +11,11 @@
 }
 
 .loginForm {
-  background: linear-gradient(161.43deg,
-      #f4fafb 6.22%,
-      var(--background) 93.78%);
+  background: linear-gradient(
+    161.43deg,
+    #f4fafb 6.22%,
+    var(--background) 93.78%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +32,17 @@
     height: unset;
     padding: 5rem 3rem 6rem;
     width: 450px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: #1c2628;
+    background: linear-gradient(
+      161.43deg,
+      #1c2628 6.22%,
+      var(--background) 93.78%
+    );
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
+      0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
   }
 
   h1,
@@ -116,9 +129,11 @@
 }
 
 .submitButton {
-  background: linear-gradient(91.43deg,
-      var(--button-gradient-start) 6.22%,
-      var(--button-gradient-end) 93.78%);
+  background: linear-gradient(
+    91.43deg,
+    var(--button-gradient-start) 6.22%,
+    var(--button-gradient-end) 93.78%
+  );
   color: var(--foreground);
   font-weight: 700;
   margin: 3rem auto 1.25rem;
@@ -135,6 +150,23 @@
     box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.04),
       0px 3px 10px -5px rgba(0, 0, 0, 0.04);
   }
+
+  @media (prefers-color-scheme: dark) {
+    --button-gradient-start: #8ac9d4;
+    --button-gradient-end: #81a3bc;
+
+    color: var(--background);
+
+    &:focus,
+    &:hover {
+      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
+        0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
+    }
+
+    &:focus {
+      outline: 1px solid var(--foreground);
+    }
+  }
 }
 
 .signup {
@@ -146,5 +178,5 @@
 }
 
 .errorMessage {
-  color: #E80000;
+  color: #e80000;
 }

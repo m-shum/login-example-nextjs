@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { users } from '@/mock-db.ts'
+import { users } from '@/mock-db'
 
 export async function POST(req: Request) {
   const formData = await req.formData()
