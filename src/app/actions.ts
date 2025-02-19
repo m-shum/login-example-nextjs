@@ -14,5 +14,6 @@ export async function login(prevState: any, formData: FormData) {
   } else
     return {
       message: data.error,
+      status: res.status,
     }
 }

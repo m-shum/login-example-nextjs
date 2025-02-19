@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useEffect, useRef } from 'react'
 import { login } from '@/app/actions'
 import styles from './LoginForm.module.scss'
 
@@ -10,6 +10,24 @@ const initialState = {
 
 export default function LoginForm() {
   const [state, formAction, pending] = useActionState(login, initialState)
+
+  const emailFail = useRef(0)
+  const passwordFail = useRef(0)
+  const $signupLink = useRef(null)
+  const $forgotPasswordLink = useRef(null)
+
+  useEffect(() => {
+    if (state.status === 404) {
+      emailFail.current++
+      passwordFail.current = 0
+      if (emailFail.current > 2) $signupLink.current?.focus()
+    }
+    if (state.status === 401 && state.message === 'Incorrect password') {
+      emailFail.current = 0
+      passwordFail.current++
+      if (passwordFail.current > 2) $forgotPasswordLink.current?.focus()
+    }
+  }, [state])
 
   return (
     <div className={styles.loginForm}>
@@ -31,6 +49,8 @@ export default function LoginForm() {
           name="email"
           id="email"
           placeholder="Enter email"
+          required
+          aria-required="true"
         />
         <label
           className={`${(styles.labelPassword, 'visually-hidden')}`}
@@ -44,13 +64,19 @@ export default function LoginForm() {
           name="password"
           id="password"
           placeholder="Enter password"
+          required
+          aria-required="true"
         />
         <div className={styles.row}>
           <label className={styles.checkbox} htmlFor="rememberUser">
             <input type="checkbox" name="rememberUser" id="rememberUser" />
             <span>Remember me</span>
           </label>
-          <a href="#" className={styles.forgotPasswordLink}>
+          <a
+            href="#"
+            className={styles.forgotPasswordLink}
+            ref={$forgotPasswordLink}
+          >
             Forgot password?
           </a>
         </div>
@@ -61,8 +87,8 @@ export default function LoginForm() {
           value="Sign In"
         />
       </form>
-      <a href="#" className={styles.signup}>
-        Don&apos;t have an account? Sign up
+      <a href="#" className={styles.signup} ref={$signupLink}>
+        Don&apos;t have an account? <span>Sign up</span>
       </a>
     </div>
   )
