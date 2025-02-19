@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState, useEffect, useRef } from 'react'
-import { login } from '@/app/actions'
+import { login } from '@/actions'
 import styles from './LoginForm.module.scss'
 
 const initialState = {

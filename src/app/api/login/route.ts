@@ -5,6 +5,7 @@ export async function POST(req: Request) {
   const formData = await req.formData()
   const email = formData.get('email')
   const password = formData.get('password')
+  const rememberUser = formData.get('rememberUser')
 
   const user = users.find(
     (user) => user.email === email || user.password === 'password'
@@ -28,6 +29,7 @@ export async function POST(req: Request) {
       name: user.name,
       id: user.id,
       email: user.email,
+      rememberUser,
     }
 
     return NextResponse.json(userResponse, { status: 200 })
