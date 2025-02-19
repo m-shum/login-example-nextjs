@@ -3,8 +3,9 @@
 import { useActionState, useEffect, useRef } from 'react'
 import { login } from '@/actions'
 import styles from './LoginForm.module.scss'
+import type { TFormState } from '@/types'
 
-const initialState = {
+const initialState: TFormState = {
   message: '',
 }
 
@@ -13,8 +14,8 @@ export default function LoginForm() {
 
   const emailFail = useRef(0)
   const passwordFail = useRef(0)
-  const $signupLink = useRef(null)
-  const $forgotPasswordLink = useRef(null)
+  const $signupLink = useRef<HTMLAnchorElement | null>(null)
+  const $forgotPasswordLink = useRef<HTMLAnchorElement | null>(null)
 
   useEffect(() => {
     if (state.status === 404) {

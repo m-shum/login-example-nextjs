@@ -1,8 +1,14 @@
 'use server'
+
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 
-export async function login(prevState: any, formData: FormData) {
+import type { TFormState } from '@/types'
+
+export async function login(
+  prevState: TFormState,
+  formData: FormData
+): Promise<TFormState> {
   const res = await fetch(`${process.env.URL}/api/login`, {
     method: 'POST',
     body: formData,
@@ -32,10 +38,23 @@ export async function login(prevState: any, formData: FormData) {
       })
     }
     redirect(`/users/${data.id}`)
-    return { message: 'Success', status: 200, data }
   } else
     return {
       message: data.error,
       status: res.status,
     }
+}
+
+export async function getSessionCookie() {
+  const cookieStore = await cookies()
+  const sessionCookie =
+    cookieStore.get('rememberUser') || cookieStore.get('sessionUser')
+
+  return sessionCookie
+}
+
+export async function signOut() {
+  const cookieStore = await cookies()
+  cookieStore.delete('rememberUser')
+  cookieStore.delete('sessionUser')
 }

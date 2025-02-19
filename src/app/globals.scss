@@ -42,10 +42,15 @@ a {
   text-decoration: none;
 }
 
-input {
+input,
+button {
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 input[type='text'],

@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server'
-import { users } from '@/mock-db.ts'
+import { users } from '@/mock-db'
 
 export async function GET(req: NextRequest) {
   const userId = req.nextUrl.searchParams.get('userId')

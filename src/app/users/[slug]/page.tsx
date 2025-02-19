@@ -1,8 +1,8 @@
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-
 // import Image from "next/image";
-// import styles from "./page.module.css";
+import { redirect } from 'next/navigation'
+import { getSessionCookie } from '@/actions'
+import styles from './page.module.scss'
+import LogoutButton from '@/components/LogoutButton'
 
 export default async function User({
   params,
@@ -11,11 +11,7 @@ export default async function User({
 }) {
   const slug = (await params).slug
 
-  const cookieStore = await cookies()
-  const sessionCookie =
-    cookieStore.get('rememberUser') || cookieStore.get('sessionUser')
-  console.log('session cookie', sessionCookie)
-
+  const sessionCookie = await getSessionCookie()
   if (!sessionCookie) {
     return redirect('/')
   }
@@ -33,10 +29,9 @@ export default async function User({
     })
 
   return (
-    <main>
-      <div>
-        <h1>Hello, {user.name}</h1>
-      </div>
+    <main className={styles.userPage}>
+      <h1>Hello, {user.name}!</h1>
+      <LogoutButton />
     </main>
   )
 }
