@@ -20,21 +20,21 @@ export async function login(
 
     cookieStore.set({
       name: 'sessionUser',
-      value: encodeURIComponent(data.id),
-      sameSite: 'strict',
       maxAge: 43200,
+      value: encodeURIComponent(data.id),
       httpOnly: true,
-      // secure:true <-- would be turned on if this was running on https
+      secure: true,
+      sameSite: 'strict',
     })
 
     if (data.rememberUser === 'on') {
       cookieStore.set({
         name: 'rememberUser',
-        value: encodeURIComponent(data.id),
-        sameSite: 'strict',
         maxAge: 86400,
+        value: encodeURIComponent(data.id),
         httpOnly: true,
-        // secure:true <-- would be turned on if this was running on https
+        secure: true,
+        sameSite: 'strict',
       })
     }
     redirect(`/users/${data.id}`)
