@@ -11,9 +11,11 @@
 }
 
 .loginForm {
-  background: linear-gradient(161.43deg,
-      #f4fafb 6.22%,
-      var(--background) 93.78%);
+  background: linear-gradient(
+    161.43deg,
+    #f4fafb 6.22%,
+    var(--background) 93.78%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,9 +36,11 @@
 
   @media (prefers-color-scheme: dark) {
     background: #1c2628;
-    background: linear-gradient(161.43deg,
-        #1c2628 6.22%,
-        var(--background) 93.78%);
+    background: linear-gradient(
+      161.43deg,
+      #1c2628 6.22%,
+      var(--background) 93.78%
+    );
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
       0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
   }
@@ -125,40 +129,81 @@
 }
 
 .submitButton {
-  background: linear-gradient(91.43deg,
-      var(--button-gradient-start) 6.22%,
-      var(--button-gradient-end) 93.78%);
-  color: var(--foreground);
-  font-weight: 700;
   margin: 3rem auto 1.25rem;
-  outline: none;
-  transition: --button-gradient-start 0.25s ease 0.1s,
-    --button-gradient-end 0.25s ease, drop-shadow 0.25s ease, color 0.25s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &:focus,
-  &:hover {
-    --button-gradient-start: #05aac7;
-    --button-gradient-end: #536992;
-
-    color: white;
-    box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.04),
-      0px 3px 10px -5px rgba(0, 0, 0, 0.04);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    --button-gradient-start: #8ac9d4;
-    --button-gradient-end: #81a3bc;
-
-    color: var(--background);
+  input {
+    background: linear-gradient(
+      91.43deg,
+      var(--button-gradient-start) 6.22%,
+      var(--button-gradient-end) 93.78%
+    );
+    color: var(--foreground);
+    font-weight: 700;
+    outline: none;
+    transform-origin: center;
+    transition: --button-gradient-start 0.25s ease 0.1s,
+      --button-gradient-end 0.25s ease, drop-shadow 0.25s ease, color 0.25s ease,
+      width 0.25s ease;
+    width: 100%;
 
     &:focus,
     &:hover {
-      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
-        0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
+      --button-gradient-start: #05aac7;
+      --button-gradient-end: #536992;
+
+      color: white;
+      box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.04),
+        0px 3px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
-    &:focus {
-      outline: 1px solid var(--foreground);
+    @media (prefers-color-scheme: dark) {
+      --button-gradient-start: #8ac9d4;
+      --button-gradient-end: #81a3bc;
+
+      color: var(--background);
+
+      &:focus,
+      &:hover {
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
+          0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
+      }
+
+      &:focus {
+        outline: 1px solid var(--foreground);
+      }
+    }
+  }
+}
+
+.submitButtonPending {
+  position: relative;
+
+  input {
+    width: 50px;
+  }
+
+  @keyframes rotate {
+    from {
+      stroke-dashoffset: 69.115;
+    }
+    to {
+      stroke-dashoffset: -69.115;
+    }
+  }
+
+  svg {
+    position: absolute;
+    path {
+      stroke: white;
+      stroke-dasharray: 69.115;
+      stroke-dashoffset: 69.115;
+      animation-iteration-count: infinite;
+      animation-name: rotate;
+      animation-duration: 2s;
+      animation-timing-function: ease;
     }
   }
 }

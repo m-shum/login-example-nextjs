@@ -11,8 +11,10 @@ export async function POST(req: Request) {
     (user) => user.email === email || user.password === 'password'
   )
 
+  let response = new NextResponse()
+
   if (!user) {
-    return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    response = NextResponse.json({ error: 'User not found' }, { status: 404 })
   } else {
     const badEmail = user.password === password && user.email !== email
     const badPassword = user.email === email && user.password !== password
@@ -22,7 +24,7 @@ export async function POST(req: Request) {
       const error = badPassword
         ? 'Incorrect password'
         : 'Incorrect email or password'
-      return NextResponse.json({ error }, { status })
+      response = NextResponse.json({ error }, { status })
     }
 
     const userResponse = {
@@ -32,6 +34,12 @@ export async function POST(req: Request) {
       rememberUser,
     }
 
-    return NextResponse.json(userResponse, { status: 200 })
+    response = NextResponse.json(userResponse, { status: 200 })
   }
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(response)
+    }, 1500)
+  })
 }
