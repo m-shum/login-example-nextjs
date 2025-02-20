@@ -9,12 +9,23 @@ export async function login(
   prevState: TFormState,
   formData: FormData
 ): Promise<TFormState> {
+  /*
+  "Why is he adding all this redundant formData logic", you may ask. 
+  Well, it's because while Next's docs indicate you can just use request.formData() to read it in an api route,
+  the reality is that you can't – it won't get parsed (see: https://github.com/vercel/next.js/issues/73220, https://github.com/nodejs/undici/issues/2736, https://github.com/vercel/next.js/discussions/53827)
+  For the sake of simplicity (and my time), I'm just sending it as a plain object to the api route handler.
+  Is this the safest or best way? No. Would I do this in prod? No. But I probably wouldn't use this version of Next.js in prod either.
+  */
+
+  const email = formData.get('email')
+  const password = formData.get('password')
+  const rememberUser = formData.get('rememberUser')
+
+  const payload = JSON.stringify({ email, password, rememberUser })
+
   const res = await fetch(`${process.env.URL}/api/login`, {
     method: 'POST',
-    body: formData,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
+    body: payload,
   })
 
   const data = await res.json()

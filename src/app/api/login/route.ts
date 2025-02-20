@@ -1,17 +1,13 @@
 import { NextResponse } from 'next/server'
 import { users } from '@/users'
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
-
 export async function POST(req: Request): Promise<void | Response> {
-  const formData = await req.formData()
-  const email = formData.get('email')
-  const password = formData.get('password')
-  const rememberUser = formData.get('rememberUser')
+  const formData = await req.json()
+
+  if (!formData)
+    return NextResponse.json({ error: 'Missing formData' }, { status: 500 })
+
+  const { email, password, rememberUser } = formData
 
   const user = users.find(
     (user) => user.email === email || user.password === 'password'
