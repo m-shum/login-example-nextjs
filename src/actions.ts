@@ -12,6 +12,9 @@ export async function login(
   const res = await fetch(`${process.env.URL}/api/login`, {
     method: 'POST',
     body: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   })
 
   const data = await res.json()
