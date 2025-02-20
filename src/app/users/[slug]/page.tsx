@@ -29,7 +29,7 @@ export default async function User({
     })
 
   return (
-    <main className={styles.userPage}>
+    <main className={`${styles.userPage} container`}>
       <h1>Hello, {user.name}!</h1>
       <LogoutButton />
     </main>

@@ -1,3 +1,5 @@
+@import '../styles/functions.scss';
+
 @property --button-gradient-start {
   syntax: '<color>';
   initial-value: #9fd9e3;
@@ -26,8 +28,8 @@
 
   @media (min-width: 530px) {
     border-radius: 2rem;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.02),
-      0px 4px 20px rgba(0, 0, 0, 0.03), 0px 4px 40px rgba(0, 0, 0, 0.04);
+    box-shadow: getShadow(0px, 3px, 8px, 0px, 0.02),
+      getShadow(0px, 4px, 20px, 0px, 0.03), getShadow(0px, 4px, 40px, 0px, 0.04);
     display: block;
     height: unset;
     padding: 5rem 3rem 6rem;
@@ -41,8 +43,8 @@
       #1c2628 6.22%,
       var(--background) 93.78%
     );
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
-      0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
+    box-shadow: getShadow(0px, 3px, 8px, 0px, 0.12),
+      getShadow(0px, 4px, 20px, 0px, 0.13), getShadow(0px, 4px, 40px, 0px, 0.14);
   }
 
   h1,
@@ -155,8 +157,8 @@
       --button-gradient-end: #536992;
 
       color: white;
-      box-shadow: 0px 5px 6px 1px rgba(0, 0, 0, 0.04),
-        0px 3px 10px -5px rgba(0, 0, 0, 0.04);
+      box-shadow: getShadow(0px, 5px, 6px, 1px, 0.04),
+        getShadow(0px, 3px, 10px, -5px, 0.13);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -167,12 +169,26 @@
 
       &:focus,
       &:hover {
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
-          0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
+        box-shadow: getShadow(0px, 3px, 8px, 0px, 0.12),
+          getShadow(0px, 4px, 20px, 0px, 0.13),
+          getShadow(0px, 4px, 0px, 40px, 0.13);
       }
 
-      &:focus {
-        outline: 1px solid var(--foreground);
+      @media (prefers-color-scheme: dark) {
+        --button-gradient-start: #8ac9d4;
+        --button-gradient-end: #81a3bc;
+
+        color: var(--background);
+
+        &:focus,
+        &:hover {
+          box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12),
+            0px 4px 20px rgba(0, 0, 0, 0.13), 0px 4px 40px rgba(0, 0, 0, 0.14);
+        }
+
+        &:focus {
+          outline: 1px solid var(--foreground);
+        }
       }
     }
   }
