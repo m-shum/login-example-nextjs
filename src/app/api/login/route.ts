@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server'
 import { users } from '@/users'
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+
 export async function POST(req: Request): Promise<void | Response> {
   const formData = await req.formData()
   const email = formData.get('email')
