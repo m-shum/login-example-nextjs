@@ -1,4 +1,4 @@
-@import '../styles/functions.scss';
+@use '../styles/functions.scss' as *;
 
 @property --button-gradient-start {
   syntax: '<color>';
@@ -13,11 +13,9 @@
 }
 
 .loginForm {
-  background: linear-gradient(
-    161.43deg,
-    #f4fafb 6.22%,
-    var(--background) 93.78%
-  );
+  background: linear-gradient(161.43deg,
+      #f4fafb 6.22%,
+      var(--background) 93.78%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,11 +35,9 @@
 
   @media (prefers-color-scheme: dark) {
     background: #1c2628;
-    background: linear-gradient(
-      161.43deg,
-      #1c2628 6.22%,
-      var(--background) 93.78%
-    );
+    background: linear-gradient(161.43deg,
+        #1c2628 6.22%,
+        var(--background) 93.78%);
     box-shadow: getShadow(0px, 3px, 8px, 0px, 0.12),
       getShadow(0px, 4px, 20px, 0px, 0.13), getShadow(0px, 4px, 40px, 0px, 0.14);
   }
@@ -130,11 +126,9 @@
 }
 
 .submitButton {
-  background: linear-gradient(
-    91.43deg,
-    var(--button-gradient-start) 6.22%,
-    var(--button-gradient-end) 93.78%
-  );
+  background: linear-gradient(91.43deg,
+      var(--button-gradient-start) 6.22%,
+      var(--button-gradient-end) 93.78%);
   color: var(--foreground);
   display: block;
   font-weight: 700;
@@ -184,6 +178,7 @@
     from {
       stroke-dashoffset: 69.115;
     }
+
     to {
       stroke-dashoffset: -69.115;
     }
@@ -194,6 +189,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     path {
       stroke: white;
       stroke-dasharray: 69.115;
