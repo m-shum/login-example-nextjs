@@ -2,7 +2,7 @@ This app uses Next.js 15 app router.
 
 ### Dynamic Deployment
 
-Uses the `dynamic` branch and is deployed on [Vercel](https://login-example-nextjs.vercel.app/) using API routes.
+Uses the `main` branch and is deployed on [Vercel](https://login-example-nextjs.vercel.app/) using API routes.
 
 ### Static Deployment
 
