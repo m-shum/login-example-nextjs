@@ -1,0 +1,14 @@
+:root {
+    --background: rgb(232, 242, 243);
+    --foreground: rgb(65, 79, 80);
+    --input-outline-rgb: 65, 79, 80;
+
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: rgb(22, 31, 32);
+        --foreground: rgb(222, 239, 241);
+        --input-outline-rgb: 222, 239, 241;
+    }
+}
