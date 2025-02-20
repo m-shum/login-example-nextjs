@@ -98,7 +98,7 @@ export default function LoginForm() {
                 d="M 11, 1 A 10,10 0 1,0 11,21 A 10,10 0 1,0 11,1"
                 fill="none"
                 stroke="black"
-                stroke-width="2"
+                strokeWidth="2"
               />
             </svg>
           ) : (
