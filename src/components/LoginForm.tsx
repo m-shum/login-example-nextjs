@@ -81,17 +81,13 @@ export default function LoginForm() {
             Forgot password?
           </a>
         </div>
-        <div
+        <button
+          type="submit"
+          disabled={pending}
           className={`${styles.submitButton} ${
             pending ? styles.submitButtonPending : ''
           }`}
         >
-          <input
-            disabled={pending}
-            type="submit"
-            value={pending ? '' : 'Sign In'}
-          />
-
           {pending ? (
             <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -102,9 +98,9 @@ export default function LoginForm() {
               />
             </svg>
           ) : (
-            <></>
+            <span>Sign In</span>
           )}
-        </div>
+        </button>
       </form>
       <a href="#" className={styles.signup} ref={$signupLink}>
         Don&apos;t have an account? <span>Sign up</span>

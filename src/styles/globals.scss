@@ -46,10 +46,9 @@ button {
 input[type='text'],
 input[type='email'],
 input[type='password'],
-input[type='submit'] {
+button[type='submit'] {
   border: none;
   border-radius: 50px;
-  display: inline-block;
   padding: 0.85rem 1.5rem;
 }
 
@@ -57,6 +56,7 @@ input[type='text'],
 input[type='email'],
 input[type='password'] {
   background: transparent;
+  display: inline-block;
   outline: 1px solid rgba(var(--input-outline-rgb), 0.4);
   transition: outline 0.2s, drop-shadow 0.1s ease;
 
