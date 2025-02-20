@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { users } from '@/mock-db'
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<void | Response> {
   const formData = await req.formData()
   const email = formData.get('email')
   const password = formData.get('password')
