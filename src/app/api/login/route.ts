@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { users } from '@/mock-db'
+import { users } from '@/users'
 
 export async function POST(req: Request): Promise<void | Response> {
   const formData = await req.formData()
