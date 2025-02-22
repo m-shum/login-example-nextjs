@@ -1,12 +1,8 @@
-This app uses Next.js 15 app router.
+This app is deployed in both [Github Pages](https://m-shum.github.io/login-example-nextjs/) (SSG) and [Vercel](https://login-example-nextjs.vercel.app/) (using server actions and API routes).
 
-### Dynamic Deployment
+### Code Structure
 
-Uses the `main` branch and is deployed on [Vercel](https://login-example-nextjs.vercel.app/) using API routes.
-
-### Static Deployment
-
-Is the statically-generated version of the app found in the `static` branch, and is deployed on [Github Pages](https://m-shum.github.io/login-example-nextjs/).
+The SSG code for the Github Pages deployment is localed in the `static` branch and the Vercel deployment SSR code is in the `main` branch.
 
 ### Credentials
 
