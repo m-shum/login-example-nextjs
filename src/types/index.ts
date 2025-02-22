@@ -5,7 +5,7 @@ type TUser = {
 }
 
 type TFormState = {
-  message: string
+  message: string | null
   status?: number
 }
 

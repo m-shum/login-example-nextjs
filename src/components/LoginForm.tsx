@@ -1,16 +1,76 @@
 'use client'
 
-import { useActionState, useEffect, useRef } from 'react'
-import { login } from '@/actions'
+import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
+import { setCookie } from 'cookies-next/client'
 import styles from './LoginForm.module.scss'
+import { users } from '@/users'
 import type { TFormState } from '@/types'
 
-const initialState: TFormState = {
-  message: '',
-}
-
 export default function LoginForm() {
-  const [state, formAction, pending] = useActionState(login, initialState)
+  const router = useRouter()
+  const [pending, setPending] = useState(false)
+  const [formState, setFormState] = useState<TFormState>()
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setPending(true)
+
+    const formData = new FormData(e.currentTarget)
+
+    const email = formData.get('email')
+    const password = formData.get('password')
+    const rememberUser = formData.get('rememberUser')
+
+    const user = users.find(
+      (user) => user.email === email || user.password === 'password'
+    )
+
+    const formState = { message: 'User not found', status: 404 }
+
+    if (!user) {
+      setPending(false)
+      setFormState({ message: 'User not found', status: 404 })
+      return
+    } else {
+      const badEmail = user.email !== email
+      const badPassword = user.email === email && user.password !== password
+
+      if (badEmail) {
+        formState.message = 'Incorrect email or password'
+      }
+      if (badPassword) {
+        formState.message = 'Incorrect password'
+      }
+
+      if (badEmail || badPassword) {
+        setPending(false)
+        formState.status = 401
+        setFormState(formState)
+        return
+      }
+
+      setCookie('sessionUser', user.id, {
+        maxAge: 43200,
+      })
+
+      if (rememberUser) {
+        setCookie('rememberUser', user.id, {
+          maxAge: 86400,
+        })
+      }
+
+      setFormState({ message: null, status: 200 })
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          setPending(false)
+          router.push(`/users/${user.id}`)
+          resolve(user)
+        }, 1500)
+      })
+    }
+  }
 
   const emailFail = useRef(0)
   const passwordFail = useRef(0)
@@ -18,25 +78,28 @@ export default function LoginForm() {
   const $forgotPasswordLink = useRef<HTMLAnchorElement | null>(null)
 
   useEffect(() => {
-    if (state.status === 404) {
+    if (formState?.status === 404) {
       emailFail.current++
       passwordFail.current = 0
       if (emailFail.current > 2) $signupLink.current?.focus()
     }
-    if (state.status === 401 && state.message === 'Incorrect password') {
+    if (
+      formState?.status === 401 &&
+      formState?.message === 'Incorrect password'
+    ) {
       emailFail.current = 0
       passwordFail.current++
       if (passwordFail.current > 2) $forgotPasswordLink.current?.focus()
     }
-  }, [state])
+  }, [formState])
 
   return (
     <div className={styles.loginForm}>
       <h1>Hi there!</h1>
       <p>Log in to continue</p>
-      <form action={formAction}>
+      <form onSubmit={handleLogin}>
         <p aria-live="polite" className={styles.errorMessage}>
-          <span>{state?.message}</span>
+          <span>{formState?.message}</span>
         </p>
         <label
           className={`${(styles.labelEmail, 'visually-hidden')}`}
@@ -88,18 +151,31 @@ export default function LoginForm() {
             pending ? styles.submitButtonPending : ''
           }`}
         >
-          {pending ? (
-            <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M 11, 1 A 10,10 0 1,0 11,21 A 10,10 0 1,0 11,1"
-                fill="none"
-                stroke="black"
-                strokeWidth="2"
-              />
-            </svg>
-          ) : (
-            <span>Sign In</span>
-          )}
+          <div
+            style={{
+              transition: 'opacity 0.5s ease-in-out',
+              opacity: pending ? 1 : 0,
+            }}
+          >
+            {pending && (
+              <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M 11, 1 A 10,10 0 1,0 11,21 A 10,10 0 1,0 11,1"
+                  fill="none"
+                  stroke="black"
+                  strokeWidth="2"
+                />
+              </svg>
+            )}
+          </div>
+          <div
+            style={{
+              transition: 'opacity 0.5s ease-in-out',
+              opacity: pending ? 0 : 1,
+            }}
+          >
+            {!pending && <span>Sign In</span>}
+          </div>
         </button>
       </form>
       <a href="#" className={styles.signup} ref={$signupLink}>

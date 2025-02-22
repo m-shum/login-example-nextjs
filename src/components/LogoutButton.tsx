@@ -1,13 +1,15 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { deleteCookie } from 'cookies-next/client'
+
 import styles from './Logout.module.scss'
-import { signOut } from '@/actions'
 
 export default function LogoutButton() {
   const router = useRouter()
   const handleSignOut = async () => {
-    await signOut()
+    deleteCookie('sessionUser')
+    deleteCookie('rememberUser')
     router.push('/')
   }
   return (
