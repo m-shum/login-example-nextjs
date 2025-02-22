@@ -6,7 +6,7 @@ Uses the `main` branch and is deployed on [Vercel](https://login-example-nextjs
 
 ### Static Deployment
 
-Is the statically-generated version of the app found in the `static` branch, and is deployed on [Github Pages]().
+Is the statically-generated version of the app found in the `static` branch, and is deployed on [Github Pages](https://m-shum.github.io/login-example-nextjs/).
 
 ### Credentials
 
